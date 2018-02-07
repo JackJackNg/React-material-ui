@@ -1,7 +1,11 @@
 import React from 'react'
 import Form from './TodoForm'
 import TodoDisplay from './TodoDisplay'
-import AppBar from 'material-ui/AppBar'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import Button from 'material-ui/Button/Button';
+import AppBar from 'material-ui/AppBar/AppBar';
 
 export default class TodoList extends React.Component {
     constructor() {
@@ -25,10 +29,6 @@ export default class TodoList extends React.Component {
     }
 
     editItem (origin, update) {
-        /*
-            1.  removeFromList & addToList
-            2.  map((item)=>if(item==value){return value =update} item) 
-        */
         console.log(origin, update);
 
         this.setState((prevState) => ({
@@ -37,14 +37,12 @@ export default class TodoList extends React.Component {
     }
 
     render () {
-        return (<div >
-            <AppBar
-                title="Title"
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
-            />
-            <Form addItem={this.addToList} todo={this.state.todo} />
-            <TodoDisplay editItem={this.editItem} removeItem={this.removeFromList} todo={this.state.todo} />
-
-        </div>)
+        return (
+            <MuiThemeProvider  theme={getMuiTheme(darkBaseTheme)}>
+                <AppBar title="My React To do List" /> 
+                <Form addItem={this.addToList} todo={this.state.todo} />
+                <TodoDisplay editItem={this.editItem} removeItem={this.removeFromList} todo={this.state.todo} />
+            </MuiThemeProvider>
+        )
     }
 }

@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import Button from 'material-ui/Button/Button';
+import {
+    TableRow,
+    TableRowColumn
+} from 'material-ui/Table';
 
 class TodoItem extends Component {
   constructor(props) {
@@ -44,11 +49,15 @@ class TodoItem extends Component {
 
   render () {
     return (
-      <li onMouseOver={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-        {this.state.value}
-        {this.state.isEditing && (<span><input ref="input" type="text" defaultValue={this.state.value} /><button onClick={this.handleConfirm}>confirm</button></span>)}
-        {this.state.isHover && !this.state.isEditing && <span><button onClick={this.handleEditClick} className="button">Edit</button><button onClick={this.removeItem} className="button">Remove</button></span>}
-      </li>
+      <TableRow onMouseOver={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <TableRowColumn>
+          {this.state.value}
+        </TableRowColumn>
+        <TableRowColumn>
+          {this.state.isEditing && (<span><input ref="input" type="text" defaultValue={this.state.value} /><button onClick={this.handleConfirm}>confirm</button></span>)}
+          {this.state.isHover && !this.state.isEditing && <span><button onClick={this.handleEditClick} className="button">Edit</button><button onClick={this.removeItem} className="button">Remove</button></span>}
+        </TableRowColumn>
+      </TableRow>
     )
   }
 }

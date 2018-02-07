@@ -1,4 +1,7 @@
 import React from 'react'
+import Button from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+
 
 export default class TodoForm extends React.Component {
   constructor(props) {
@@ -8,25 +11,20 @@ export default class TodoForm extends React.Component {
 
   }
 
-  handleClick () {
-    // I leave here
-    this.props.addItem(this.refs.input.value)
+  handleClick (e) {
+    const input = this.refs.input.input
+
+    this.props.addItem(input.value)
+    e.preventDefault()
   }
 
 
   render () {
     return (
       <form action="">
-        <div className="field is-grouped">
-          <p className="control is-expanded">
-            <input className="input" ref="input" type="text" onMouseEnter={this.handleMouseEnter} placeholder="Find a repository" />
-          </p>
-          <p className="control">
-            <a className="button is-info" onClick={this.handleClick}> Add  </a>
-          </p>
-        </div>
-
-      </form>
+        <TextField className="input" ref="input" type="text" onMouseEnter={this.handleMouseEnter} hintText="Your to do item" />
+        <Button label="Add" variant="raised" primary={true} onClick={this.handleClick} />
+      </form >
     )
   }
 }
