@@ -1,31 +1,27 @@
 import React, { Component } from 'react'
-import TodoItem from './TodoItem';
+import PropTypes from 'prop-types'
+import TodoItem from './TodoItem'
 import {
-    Table,
-    TableBody,
-    // TableFooter,
-    // TableHeader,
-    // TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-} from 'material-ui/Table';
+  Table,
+  TableBody
+} from 'material-ui/Table'
 
-class TodoDisplay extends Component {
-    constructor(props) {
-        super(props)
-    }
+class TodoDisplay extends Component { 
+  render () {
+    return (
+      <Table  >
+        <TableBody>
+          {this.props.todo.map((e) => (<TodoItem editItem={this.props.editItem} removeItem={this.props.removeItem} itemvalue={e} key={e} />))} 
+        </TableBody>
+      </Table>
+    )
+  }
+}
 
-    render () {
-        return (
-            <Table  >
-               <TableBody>
-                 {this.props.todo.map((e) => (<TodoItem editItem={this.props.editItem} removeItem={this.props.removeItem} itemvalue={e} key={e} />))}
-                   
-                </TableBody>
-
-            </Table>
-        )
-    }
+TodoDisplay.propTypes = {
+  todo : PropTypes.array,
+  removeItem : PropTypes.func,
+  editItem : PropTypes.func
 }
 
 export default TodoDisplay
