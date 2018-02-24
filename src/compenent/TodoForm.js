@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import Button from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 
 export default class TodoForm extends React.Component {
